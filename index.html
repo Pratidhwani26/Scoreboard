@@ -2,145 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pratidhwani Scoreboard</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: fixed;
-            background-color: #000000;
-        }
-        
-        body {
-            width: 100%;
-            height: 100%;
-            background-color: #000000;
-            overflow: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Container centers everything */
-        .report-container {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #000000;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Wrapper maintains 16:9 aspect ratio and scales to fit */
-        .iframe-wrapper {
-            position: relative;
-            width: 90vw;
-            aspect-ratio: 16 / 9;
-            max-height: 90vh;
-            max-width: calc(90vh * 16 / 9);
-            overflow: hidden;
-        }
-        
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-            overflow: hidden;
-        }
-        
-        /* Desktop/Laptop specific */
-        @media (min-width: 768px) {
-            .iframe-wrapper {
-                width: 95vw;
-                max-height: 95vh;
-                max-width: calc(95vh * 16 / 9);
-            }
-        }
-        
-        /* Tablet landscape */
-        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-            .iframe-wrapper {
-                width: 90vw;
-                max-height: 90vh;
-                max-width: calc(90vh * 16 / 9);
-            }
-        }
-        
-        /* Mobile portrait - scale to width, FIX SCROLLING */
-        @media (max-width: 767px) and (orientation: portrait) {
-            html, body {
-                overflow: hidden !important;
-                position: fixed !important;
-                width: 100% !important;
-                height: 100% !important;
-            }
-            
-            .report-container {
-                overflow: hidden !important;
-            }
-            
-            .iframe-wrapper {
-                width: 100vw;
-                height: calc(100vw * 9 / 16);
-                max-height: none;
-                max-width: none;
-                aspect-ratio: 16 / 9;
-            }
-        }
-        
-        /* Mobile landscape - maximize space */
-        @media (max-width: 767px) and (orientation: landscape) {
-            html, body {
-                overflow: hidden !important;
-                position: fixed !important;
-            }
-            
-            .iframe-wrapper {
-                width: 100vw;
-                height: 100vh;
-                max-height: none;
-                max-width: none;
-            }
-        }
-        
-        /* Large screens - prevent oversizing */
-        @media (min-width: 1400px) {
-            .iframe-wrapper {
-                max-width: 1366px;
-                max-height: 768px;
-            }
-        }
-
-        /* Prevent any touch scrolling on mobile */
-        @media (max-width: 767px) {
-            * {
-                overscroll-behavior: none;
-                -webkit-overflow-scrolling: auto;
-            }
-        }
-    </style>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Pratidhwani Scoreboard</title>
     <style>
@@ -221,7 +82,7 @@
             }
         }
         
-        /* Mobile portrait - scale to width, REMOVE SCROLLING */
+        /* Mobile portrait - scale to width, NO SCROLLING, ZOOM ENABLED */
         @media (max-width: 767px) and (orientation: portrait) {
             html, body {
                 overflow: hidden !important;
@@ -243,18 +104,37 @@
             }
         }
         
-        /* Mobile landscape - maximize space */
+        /* Mobile landscape - ALLOW SCROLLING and ZOOM */
         @media (max-width: 767px) and (orientation: landscape) {
-            html, body {
-                overflow: hidden !important;
-                position: fixed !important;
+            html {
+                overflow-y: auto !important;
+                position: relative !important;
+                height: auto !important;
+            }
+            
+            body {
+                overflow-y: auto !important;
+                position: relative !important;
+                height: auto !important;
+                min-height: 100vh;
+            }
+            
+            .report-container {
+                overflow-y: auto !important;
+                min-height: 100vh;
+                height: auto !important;
             }
             
             .iframe-wrapper {
                 width: 100vw;
-                height: 100vh;
+                height: calc(100vw * 9 / 16);
                 max-height: none;
                 max-width: none;
+                min-height: 100vh;
+            }
+            
+            iframe {
+                position: relative;
             }
         }
         
@@ -266,8 +146,8 @@
             }
         }
 
-        /* Prevent bounce scrolling but allow zoom */
-        @media (max-width: 767px) {
+        /* Prevent bounce scrolling on portrait, allow on landscape */
+        @media (max-width: 767px) and (orientation: portrait) {
             * {
                 overscroll-behavior: none;
             }
@@ -281,7 +161,6 @@
                 src="https://lookerstudio.google.com/embed/reporting/48671945-6936-4bb3-9612-140403bb7234/page/B6LqF" 
                 frameborder="0" 
                 allowfullscreen
-                scrolling="no"
                 sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
             </iframe>
         </div>
