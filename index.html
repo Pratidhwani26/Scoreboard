@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pratidhwani Scoreboard</title>
+    <title>Looker Studio Report</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,6 @@
             position: fixed;
         }
 
-        /* Container centers everything */
         .report-container {
             width: 100vw;
             height: 100vh;
@@ -27,16 +26,12 @@
             justify-content: center;
             align-items: center;
             background-color: #000000;
-            overflow: hidden;
         }
 
-        /* Default wrapper for 16:9 aspect ratio */
         .iframe-wrapper {
             position: relative;
-            width: 88vw;
-            aspect-ratio: 16 / 9;
-            max-height: 88vh;
-            max-width: calc(88vh * 16 / 9);
+            width: 100vw;
+            height: 100vh;
         }
 
         iframe {
@@ -48,63 +43,19 @@
             border: none;
         }
 
-        /* Desktop/Laptop - NO SCROLLING */
-        @media (min-width: 1024px) {
-            .iframe-wrapper {
-                width: 90vw;
-                max-height: 85vh;
-                max-width: calc(85vh * 16 / 9);
-            }
-        }
-
-        /* Large screens - prevent oversizing */
-        @media (min-width: 1400px) {
-            .iframe-wrapper {
-                max-width: 1366px;
-                max-height: 768px;
-            }
-        }
-
-        /* Tablet landscape */
-        @media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
-            .iframe-wrapper {
-                width: 88vw;
-                max-height: 85vh;
-                max-width: calc(85vh * 16 / 9);
-            }
-        }
-
-        /* Mobile Portrait - FORCE LANDSCAPE with proper sizing and centering */
+        /* Mobile Portrait - centered with proper sizing */
         @media (max-width: 767px) and (orientation: portrait) {
             .iframe-wrapper {
-                /* After rotation, this height becomes visual width (uses full phone height) */
-                height: 100vh;
-                /* After rotation, this width becomes visual height (maintains 16:9) */
-                width: calc(100vh * 9 / 16);
-                transform: rotate(90deg);
-                transform-origin: center center;
-                aspect-ratio: unset;
-                max-width: none;
-                max-height: none;
+                width: 100vw;
+                height: calc(100vw * 9 / 16);
             }
         }
 
-        /* Mobile Landscape - fit perfectly without scrolling */
+        /* Mobile Landscape - fit to screen */
         @media (max-width: 767px) and (orientation: landscape) {
             .iframe-wrapper {
-                width: auto;
-                height: 90vh;
-                aspect-ratio: 16 / 9;
-                max-width: calc(90vh * 16 / 9);
-            }
-        }
-
-        /* Extra safeguard for very small laptop screens */
-        @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
-            .iframe-wrapper {
-                width: 85vw;
-                max-height: 80vh;
-                max-width: calc(80vh * 16 / 9);
+                width: 100vw;
+                height: 100vh;
             }
         }
     </style>
