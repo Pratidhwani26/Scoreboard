@@ -16,9 +16,9 @@
             height: 100%;
             background-color: #000000;
             overflow: hidden;
-            position: fixed;
         }
 
+        /* Container centers everything */
         .report-container {
             width: 100vw;
             height: 100vh;
@@ -28,10 +28,13 @@
             background-color: #000000;
         }
 
+        /* Wrapper maintains 16:9 aspect ratio and scales to fit */
         .iframe-wrapper {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width: 90vw;
+            aspect-ratio: 16 / 9;
+            max-height: 90vh;
+            max-width: calc(90vh * 16 / 9);
         }
 
         iframe {
@@ -43,19 +46,46 @@
             border: none;
         }
 
-        /* Mobile Portrait - centered with proper sizing */
-        @media (max-width: 767px) and (orientation: portrait) {
+        /* Desktop/Laptop specific */
+        @media (min-width: 768px) {
             .iframe-wrapper {
-                width: 100vw;
-                height: calc(100vw * 9 / 16);
+                width: 95vw;
+                max-height: 95vh;
+                max-width: calc(95vh * 16 / 9);
             }
         }
 
-        /* Mobile Landscape - fit to screen */
+        /* Tablet landscape */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .iframe-wrapper {
+                width: 90vw;
+                max-height: 90vh;
+                max-width: calc(90vh * 16 / 9);
+            }
+        }
+
+        /* Mobile portrait - scale to width */
+        @media (max-width: 767px) and (orientation: portrait) {
+            .iframe-wrapper {
+                width: 95vw;
+                aspect-ratio: 16 / 9;
+            }
+        }
+
+        /* Mobile landscape - maximize space */
         @media (max-width: 767px) and (orientation: landscape) {
             .iframe-wrapper {
-                width: 100vw;
-                height: 100vh;
+                width: 95vw;
+                max-height: 95vh;
+                max-width: calc(95vh * 16 / 9);
+            }
+        }
+
+        /* Large screens - prevent oversizing */
+        @media (min-width: 1400px) {
+            .iframe-wrapper {
+                max-width: 1366px;
+                max-height: 768px;
             }
         }
     </style>
