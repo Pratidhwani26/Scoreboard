@@ -16,6 +16,7 @@
             height: 100%;
             background-color: #000000;
             overflow: hidden;
+            position: fixed;
         }
 
         /* Container centers everything */
@@ -26,15 +27,16 @@
             justify-content: center;
             align-items: center;
             background-color: #000000;
+            overflow: hidden;
         }
 
-        /* Wrapper maintains 16:9 aspect ratio and scales to fit */
+        /* Default wrapper for 16:9 aspect ratio */
         .iframe-wrapper {
             position: relative;
-            width: 90vw;
+            width: 88vw;
             aspect-ratio: 16 / 9;
-            max-height: 90vh;
-            max-width: calc(90vh * 16 / 9);
+            max-height: 88vh;
+            max-width: calc(88vh * 16 / 9);
         }
 
         iframe {
@@ -46,38 +48,12 @@
             border: none;
         }
 
-        /* Desktop/Laptop specific */
-        @media (min-width: 768px) {
-            .iframe-wrapper {
-                width: 95vw;
-                max-height: 95vh;
-                max-width: calc(95vh * 16 / 9);
-            }
-        }
-
-        /* Tablet landscape */
-        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        /* Desktop/Laptop - NO SCROLLING */
+        @media (min-width: 1024px) {
             .iframe-wrapper {
                 width: 90vw;
-                max-height: 90vh;
-                max-width: calc(90vh * 16 / 9);
-            }
-        }
-
-        /* Mobile portrait - scale to width */
-        @media (max-width: 767px) and (orientation: portrait) {
-            .iframe-wrapper {
-                width: 95vw;
-                aspect-ratio: 16 / 9;
-            }
-        }
-
-        /* Mobile landscape - maximize space */
-        @media (max-width: 767px) and (orientation: landscape) {
-            .iframe-wrapper {
-                width: 95vw;
-                max-height: 95vh;
-                max-width: calc(95vh * 16 / 9);
+                max-height: 85vh;
+                max-width: calc(85vh * 16 / 9);
             }
         }
 
@@ -86,6 +62,46 @@
             .iframe-wrapper {
                 max-width: 1366px;
                 max-height: 768px;
+            }
+        }
+
+        /* Tablet landscape */
+        @media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+            .iframe-wrapper {
+                width: 88vw;
+                max-height: 85vh;
+                max-width: calc(85vh * 16 / 9);
+            }
+        }
+
+        /* Mobile Portrait - FORCE LANDSCAPE by rotating 90deg clockwise */
+        @media (max-width: 767px) and (orientation: portrait) {
+            .iframe-wrapper {
+                /* Width will become visual height after rotation */
+                width: calc(90vw * 16 / 9);
+                /* Height will become visual width after rotation */
+                height: 90vw;
+                transform: rotate(90deg);
+                transform-origin: center center;
+                aspect-ratio: unset;
+            }
+        }
+
+        /* Mobile Landscape - normal display */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .iframe-wrapper {
+                width: 95vw;
+                max-height: 90vh;
+                max-width: calc(90vh * 16 / 9);
+            }
+        }
+
+        /* Extra safeguard for very small laptop screens */
+        @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+            .iframe-wrapper {
+                width: 85vw;
+                max-height: 80vh;
+                max-width: calc(80vh * 16 / 9);
             }
         }
     </style>
