@@ -1,40 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  * {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Looker Studio Report</title>
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background-color: #000000;
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: #0A0A0A;
             overflow: hidden;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .report-container {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0;
         }
 
-        .report-wrapper {
-            width: 100%;
-            height: 100%;
-            max-width: 100vw;
-            max-height: 100vh;
+        .iframe-wrapper {
             position: relative;
+            width: 95vw;
+            height: 95vh;
         }
 
         iframe {
@@ -43,24 +38,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            border: 0;
         }
 
-        /* Desktop specific - ensure no scrolling needed */
-        @media (min-width: 768px) {
-            .report-wrapper {
-                width: 95vw;
-                height: 95vh;
-            }
-        }
-
-        /* Mobile specific - center vertically */
+        /* Mobile adjustments */
         @media (max-width: 767px) {
-            body {
-                align-items: center;
-            }
-            
-            .report-wrapper {
+            .iframe-wrapper {
                 width: 100vw;
                 height: 100vh;
             }
@@ -68,13 +51,18 @@
     </style>
 </head>
 <body>
-  
-<div class="report-container">
-        <div class="report-wrapper">
-  <iframe src="https://lookerstudio.google.com/embed/reporting/48671945-6936-4bb3-9612-140403bb7234/page/B6LqF" allowfullscreensandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+    <div class="report-container">
+        <div class="iframe-wrapper">
+            <iframe 
+                src="https://lookerstudio.google.com/embed/reporting/48671945-6936-4bb3-9612-140403bb7234/page/B6LqF" 
+                frameborder="0" 
+                allowfullscreen 
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
             </iframe>
         </div>
     </div>
 </body>
 </html>
+</html>
+
 
