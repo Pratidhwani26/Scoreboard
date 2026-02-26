@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Looker Studio Report</title>
+    <title>Pratidhwani Scoreboard</title>
     <style>
         * {
             margin: 0;
@@ -74,24 +74,27 @@
             }
         }
 
-        /* Mobile Portrait - FORCE LANDSCAPE by rotating 90deg clockwise */
+        /* Mobile Portrait - FORCE LANDSCAPE with proper sizing and centering */
         @media (max-width: 767px) and (orientation: portrait) {
             .iframe-wrapper {
-                /* Width will become visual height after rotation */
-                width: calc(90vw * 16 / 9);
-                /* Height will become visual width after rotation */
-                height: 90vw;
+                /* After rotation, this height becomes visual width (uses full phone height) */
+                height: 100vh;
+                /* After rotation, this width becomes visual height (maintains 16:9) */
+                width: calc(100vh * 9 / 16);
                 transform: rotate(90deg);
                 transform-origin: center center;
                 aspect-ratio: unset;
+                max-width: none;
+                max-height: none;
             }
         }
 
-        /* Mobile Landscape - normal display */
+        /* Mobile Landscape - fit perfectly without scrolling */
         @media (max-width: 767px) and (orientation: landscape) {
             .iframe-wrapper {
-                width: 95vw;
-                max-height: 90vh;
+                width: auto;
+                height: 90vh;
+                aspect-ratio: 16 / 9;
                 max-width: calc(90vh * 16 / 9);
             }
         }
